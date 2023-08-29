@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "poetry-editable-extensions"
+version = "0.1.0"
+description = ""
+authors = ["Robert Belter <robertjohnbelter@gmail.com>"]
+packages = [{include='example', from='src'}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+# NOTE: This is required only for poetry < 1.6.0, since the build dependencies are hidden from
+# pip on earlier versions... Which may also be related to the editable installation issue.
+# See https://github.com/python-poetry/poetry/pull/7975
+pybind11 = "2.10.4"
+
+
+[build-system]
+requires = [
+    "poetry-core",
+    "setuptools",
+    "pybind11==2.10.4"
+]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.build]
+script = "build.py"
+generate-setup-file = true
